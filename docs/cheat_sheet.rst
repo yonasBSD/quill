@@ -29,9 +29,9 @@ Logging ``arithmetic types``, ``strings``, ``string_view``, ``C strings``, ``C c
 
 Outputs:
 
-    LOG_INFO      root         number 123.46
+    number 123.46
 
-    LOG_INFO      root         number [a: 123.4567]
+    number [a: 123.4567]
 
 Logging Arithmetic C-style Arrays
 ---------------------------------
@@ -48,9 +48,9 @@ This functionality is supported by including ``quill/std/Array.h``
 
 Outputs:
 
-    LOG_INFO      root         array [1, 2, 3]
+    array [1, 2, 3]
 
-    LOG_INFO      root         array [a: [1, 2, 3]]
+    array [a: [1, 2, 3]]
 
 Logging Enums
 -------------
@@ -86,9 +86,9 @@ For enums, you can either cast them to their underlying type or provide an ``ope
 
 Outputs:
 
-    LOG_INFO      root         Side SELL
+    Side SELL
 
-    LOG_INFO      root         Side [s: SELL]
+    Side [s: SELL]
 
 Logging Strings Without Additional Copy
 ---------------------------------------
@@ -106,9 +106,9 @@ By default, the logger takes a deep copy of any string. To log an immutable stri
 
 Outputs:
 
-    LOG_INFO      root         The answer is Test String
+    The answer is Test String
 
-    LOG_INFO      root         The answer is [sref: Test String]
+    The answer is [sref: Test String]
 
 Logging STL Library Types
 -------------------------
@@ -127,9 +127,9 @@ To log STL types, include the relevant header from ``quill/std/`` and pass the t
 
 Outputs:
 
-    LOG_INFO      root         Two vectors ["One", "Two", "Three"] ["Four", "Five", "Six"] and a vector of vectors [["One", "Two", "Three"], ["Four", "Five", "Six"]]
+    Two vectors ["One", "Two", "Three"] ["Four", "Five", "Six"] and a vector of vectors [["One", "Two", "Three"], ["Four", "Five", "Six"]]
 
-    LOG_INFO      root         Two vectors and a vector of vectors [v1: ["One", "Two", "Three"], v2: ["Four", "Five", "Six"], vv: [["One", "Two", "Three"], ["Four", "Five", "Six"]]]
+    Two vectors and a vector of vectors [v1: ["One", "Two", "Three"], v2: ["Four", "Five", "Six"], vv: [["One", "Two", "Three"], ["Four", "Five", "Six"]]]
 
 Logging Nested STL Library Types
 --------------------------------
@@ -147,9 +147,10 @@ For example, to log a ``std::vector`` of ``std::pair``, include both ``quill/std
     LOGV_INFO(logger, "Vector", v1);
 
 Outputs:
-    LOG_INFO      root         Vector [(1, "One"), (2, "Two"), (3, "Three")]
 
-    LOG_INFO      root         Vector [v1: [(1, "One"), (2, "Two"), (3, "Three")]]
+    Vector [(1, "One"), (2, "Two"), (3, "Three")]
+
+    Vector [v1: [(1, "One"), (2, "Two"), (3, "Three")]]
 
 Logging Wide Strings
 --------------------
@@ -166,9 +167,9 @@ On Windows, wide strings are supported by including ``quill/std/WideString.h``.
 
 Outputs:
 
-    LOG_INFO      root         string wide and vector ["wide", "string"]
+    string wide and vector ["wide", "string"]
 
-    LOG_INFO      root         string and vector [w: wide, wv: ["wide", "string"]]
+    string and vector [w: wide, wv: ["wide", "string"]]
 
 Logging User Defined Types
 --------------------------
@@ -206,9 +207,9 @@ For log statements during program initialization, or for debug log statements no
 
 Outputs:
 
-    LOG_INFO      root         Starting with config param_1: 123 param_2 456
+    Starting with config param_1: 123 param_2 456
 
-    LOG_INFO      root         Starting [cfg_str: param_1: 123 param_2 456]
+    Starting [cfg_str: param_1: 123 param_2 456]
 
 For log statements on the critical path, it is advised to provide serialization methods so that only a binary copy is taken on the critical path. You need to provide the required ``formatter`` specializations for ``libfmt`` to format the types and the ``Codec`` for the quill library. The type will be encoded on the critical path, then decoded and recreated on the backend thread, and finally passed to ``libfmt`` for formatting.
 
@@ -255,9 +256,9 @@ Use ``quill::TriviallyCopyableTypeCodec`` helper. Note that a default constructo
 
 Outputs:
 
-    LOG_INFO      root         Order is symbol=AAPL price=220.1 quantity=100
+    Order is symbol=AAPL price=220.1 quantity=100
 
-    LOG_INFO      root         Order [order: symbol=AAPL price=220.1 quantity=100]
+    Order [order: symbol=AAPL price=220.1 quantity=100]
 
 Serializing Trivially Copyable Types With Private Members
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -323,9 +324,9 @@ For types with private members, make ``quill::TriviallyCopyableTypeCodec<T>`` a 
 
 Outputs:
 
-    LOG_INFO      root         Order is timestamp=17220422717461192 price=220.1 quantity=100
+    Order is timestamp=17220422717461192 price=220.1 quantity=100
 
-    LOG_INFO      root         Order [order: timestamp=17220422717461192 price=220.1 quantity=100]
+    Order [order: timestamp=17220422717461192 price=220.1 quantity=100]
 
 Logging Complex User Defined Types With Public Members
 ------------------------------------------------------
@@ -392,9 +393,9 @@ For user defined types with complex types as members we need to define ``quill::
 
 Outputs:
 
-    LOG_INFO      root         Order is symbol=AAPL price=220.1 quantity=100
+    Order is symbol=AAPL price=220.1 quantity=100
 
-    LOG_INFO      root         Order [order: symbol=AAPL price=220.1 quantity=100]
+    Order [order: symbol=AAPL price=220.1 quantity=100]
 
 Logging Complex User Defined Types With Private Members
 -------------------------------------------------------
@@ -472,6 +473,7 @@ For a user define type with private members the easier workaround is same as in 
     LOGV_INFO(logger, "Order", order);
 
 Outputs:
-    LOG_INFO      root         Order is timestamp=17220432928367021 symbol=AAPL price=220.1 quantity=100
 
-    LOG_INFO      root         Order [order: timestamp=17220432928367021 symbol=AAPL price=220.1 quantity=100]
+    Order is timestamp=17220432928367021 symbol=AAPL price=220.1 quantity=100
+
+    Order [order: timestamp=17220432928367021 symbol=AAPL price=220.1 quantity=100]
