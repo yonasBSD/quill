@@ -80,6 +80,12 @@ For enums, you can either cast them to their underlying type or provide an ``ope
       return os;
     }
 
+    template <>
+    struct fmtquill::formatter<Side> : fmtquill::ostream_formatter
+    {
+
+    };
+
     Side s {Side::SELL};
     LOG_INFO(logger, "Side {}", s);
     LOGV_INFO(logger, "Side", s);
