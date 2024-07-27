@@ -163,6 +163,7 @@ Logging Wide Strings
 On Windows, wide strings are supported by including ``quill/std/WideString.h``.
 
 .. code:: cpp
+
     #include "quill/std/WideString.h"
     #include "quill/std/Vector.h"
 
@@ -185,6 +186,7 @@ To log user-defined types, you must tell the library how to serialize them or co
 For log statements during program initialization, or for debug log statements not on the critical path, it is recommended to convert user-defined types to strings and pass a string to the ``LOG_`` function. This approach requires less work and reduces template instantiations. For example
 
 .. code:: cpp
+
     class Config
     {
       public:
