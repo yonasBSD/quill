@@ -366,14 +366,12 @@ For user defined types with complex types as members we need to define ``quill::
       static void encode(std::byte*& buffer, std::vector<size_t> const& conditional_arg_size_cache,
                          uint32_t& conditional_arg_size_cache_index, ::Order const& order) noexcept
       {
-        // You must encode the same members and in the same order as in the ArgSizeCalculator::calculate
         encode_members(buffer, conditional_arg_size_cache, conditional_arg_size_cache_index, order.symbol,
                        order.price, order.quantity);
       }
 
       static ::Order decode_arg(std::byte*& buffer)
       {
-        // You must decode the same members and in the same order as in the Encoder::encode
         ::Order order;
         decode_members(buffer, order, order.symbol, order.price, order.quantity);
         return order;
@@ -448,14 +446,12 @@ For a user define type with private members the easier workaround is same as in 
       static void encode(std::byte*& buffer, std::vector<size_t> const& conditional_arg_size_cache,
                          uint32_t& conditional_arg_size_cache_index, ::Order const& order) noexcept
       {
-        // You must encode the same members and in the same order as in the ArgSizeCalculator::calculate
         encode_members(buffer, conditional_arg_size_cache, conditional_arg_size_cache_index, order.timestamp, order.symbol,
                        order.price, order.quantity);
       }
 
       static ::Order decode_arg(std::byte*& buffer)
       {
-        // You must decode the same members and in the same order as in the Encoder::encode
         ::Order order;
         decode_members(buffer, order, order.timestamp, order.symbol, order.price, order.quantity);
         return order;
