@@ -190,20 +190,19 @@ For log statements during program initialization, or for debug log statements no
         os << "param_1: " << config.param_1 << " param_2 " << config.param_2;
         return os;
       }
-  };
+    };
 
-  template <>
-  struct fmtquill::formatter<Config> : fmtquill::ostream_formatter
-  {
+    template <>
+    struct fmtquill::formatter<Config> : fmtquill::ostream_formatter
+    {
+    };
 
-  };
+    Config cfg {"123", "456"};
 
-  Config cfg {"123", "456"};
+    LOG_INFO(logger, "Starting with config {}", fmtquill::format("{}", cfg));
 
-  LOG_INFO(logger, "Starting with config {}", fmtquill::format("{}", cfg));
-
-  std::string const cfg_str = fmtquill::format("{}", cfg);
-  LOGV_INFO(logger, "Starting", cfg_str);
+    std::string const cfg_str = fmtquill::format("{}", cfg);
+    LOGV_INFO(logger, "Starting", cfg_str);
 
 Outputs:
 
