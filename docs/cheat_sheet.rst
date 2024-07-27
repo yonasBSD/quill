@@ -398,7 +398,7 @@ Logging Complex User Defined Types With Private Members
 -------------------------------------------------------
 For a user define type with private members the easier workaround is same as in the trivially copyable case, to make friend ``quill::Codec<T>`` and also have a private default constructor
 
-.. code::cpp
+.. code:: cpp
 
     #include "quill/core/Codec.h"
     #include "quill/core/DynamicFormatArgStore.h"
